@@ -95,7 +95,7 @@ const Sign = () => {
   return (
      <div className="">
       <div className="row g-0 sign-main-part">
-        <div className="col-12 col-md-6 col-lg-6 ">
+        <div className="col-12 col-md-6 col-lg-6">
           <div className="w-100">
             <img
               src={SignImg}

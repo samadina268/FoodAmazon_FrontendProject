@@ -34,7 +34,7 @@ const Header = () => {
 
           <div className="collapse navbar-collapse ms-4" id="navbarScroll">
             <ul
-              className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
+              className="navbar-nav me-auto my-2 my-lg-0"
               style={{ "--bs-scroll-height": "100px" }}
             >
               <li className="nav-item">

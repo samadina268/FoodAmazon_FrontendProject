@@ -102,8 +102,8 @@ link {
 
 /* header section */
 .foodamazonLogo {
-  width: 74px;
-  height: 74px;
+  width: 54px;
+  height: 54px;
 }
 
 .header-navlink {
@@ -348,7 +348,7 @@ link {
 
 @media (max-width: 768px) {
   .ourprod-card-box {
-    width: 80%;
+    width: 95%;
     margin: auto;
     margin-top: 5rem;
   }
@@ -478,7 +478,7 @@ link {
 }
 @media (max-width: 768px) {
   .bulkOderCard {
-    width: 85%;
+    width: 95%;
     margin: auto;
     margin-top: 4rem;
   }
@@ -836,7 +836,7 @@ link {
 }
 @media (max-width: 600px) {
   .review-cardbox {
-    width: 85%;
+    width: 95%;
 
     margin-top: 5rem;
   }
