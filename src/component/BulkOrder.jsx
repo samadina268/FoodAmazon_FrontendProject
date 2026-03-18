@@ -34,8 +34,8 @@ const BulkOrder = () => {
                 />
               </div>
               <div className="mx-auto text-center bulkOrder-card-name-product mt-4 ">
-                <div className="card-name">{order.productName}</div>
-                <div className="card-product mt-2">{order.aboutProduct}</div>
+                <div className="card-name">{order.productname}</div>
+                <div className="card-product mt-2">{order.aboutproduct}</div>
 
                 <button
                   className="w-100 mt-5 btn btn-outline-success card-btn d-flex align-items-center justify-content-center "

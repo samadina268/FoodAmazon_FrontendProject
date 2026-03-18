@@ -5,15 +5,15 @@ import Landing from "./component/Landing";
 import { Routes, Route } from "react-router-dom";
 import ProductDetails from "./component/ProductDetails";
 import AllProductContext from "./Allproductcontext/AllProductContext";
+// import BulkOrder1 from "../src/assets/images/bulkorder-1.png";
+// import BulkOrder2 from "../src/assets/images/bulkorder-2.png";
+// import BulkOrder3 from "../src/assets/images/bulkorder-3.png";
+import Cart from "./component/Cart";
+import CheckOut from "./component/CheckOut";
+import { useEffect, useState } from "react";
 import product1 from "../src/assets/images/ourproduct-1.png";
 import product2 from "../src/assets/images/ourproduct-2.png";
 import product3 from "../src/assets/images/ourproduct-3.png";
-import BulkOrder1 from "../src/assets/images/bulkorder-1.png";
-import BulkOrder2 from "../src/assets/images/bulkorder-2.png";
-import BulkOrder3 from "../src/assets/images/bulkorder-3.png";
-import Cart from "./component/Cart";
-import CheckOut from "./component/CheckOut";
-import { useState } from "react";
 
 const ourProducts = [
   {
@@ -60,35 +60,52 @@ const ourProducts = [
   },
 ];
 
-const bulk = [
-  {
-    id: 1,
-    image: BulkOrder1,
-    productName: "Organic Almond Delight",
-    aboutProduct:
-      "Crunchy almonds coated with a touch of organic honey, perfect for a healthy snack.",
-    btn: "Order Now",
-  },
-  {
-    id: 2,
-    image: BulkOrder2,
-    productName: "Berry Bliss Bites",
-    aboutProduct:
-      "A delightful mix of organic berries and nuts, offering a burst of flavor in every bite.",
-    btn: "Order Now",
-  },
-  {
-    id: 3,
-    image: BulkOrder3,
-    productName: "Coconut Crunchies",
-    aboutProduct:
-      "Light and crispy coconut flakes, naturally sweet and utterly delicious taste.",
-    btn: "Order Now",
-  },
-];
+// const bulk = [
+//   {
+//     id: 1,
+//     image: BulkOrder1,
+//     productname: "Organic Almond Delight",
+//     aboutproduct:
+//       "Crunchy almonds coated with a touch of organic honey, perfect for a healthy snack.",
+//     btn: "Order Now",
+//   },
+//   {
+//     id: 2,
+//     image: BulkOrder2,
+//     productname: "Berry Bliss Bites",
+//     aboutproduct:
+//       "A delightful mix of organic berries and nuts, offering a burst of flavor in every bite.",
+//     btn: "Order Now",
+//   },
+//   {
+//     id: 3,
+//     image: BulkOrder3,
+//     productname: "Coconut Crunchies",
+//     aboutproduct:
+//       "Light and crispy coconut flakes, naturally sweet and utterly delicious taste.",
+//     btn: "Order Now",
+//   },
+// ];
 
 function App() {
   const [cartProduct, setcartProduct] = useState([]);
+  // const [ourProducts, setourProducts] = useState([])
+  const [bulk, setbulk] = useState([])
+
+  // fetch ourproduct api from backend
+  // useEffect(() => {
+  //   fetch("https://food-amazon-backend-project.vercel.app/home/product")
+  //     .then((res) => res.json())
+  //     .then((data) => setourProducts(data))
+    
+  // }, [])
+
+  // fetch bulkproduct api from backend
+  useEffect(() => {
+    fetch("https://food-amazon-backend-project.vercel.app/home/bulkproduct")
+    .then((res) => res.json())
+    .then((data) => setbulk(data))
+  }, [])
 
   return (
     <div>

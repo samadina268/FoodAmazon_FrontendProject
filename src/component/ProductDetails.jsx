@@ -21,9 +21,9 @@ const ProductDetails = () => {
 
   const { bulk, ourProducts } = useContext(AllProductContext);
 
-  const bulkProduct = bulk.find((pac) => pac.id === Number(id));
+  const bulkProduct = bulk.find((pac) => Number(pac.id) === Number(id));
 
-  const products = ourProducts.find((pac) => pac.id === Number(id));
+  const products = ourProducts.find((pac) => Number(pac.id) === Number(id));
 
   if (!bulkProduct || !products) {
     return <p>Product not found</p>;

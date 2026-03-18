@@ -847,6 +847,7 @@ link {
   background-color: #00a85a9c;
   width: 100% !important;
   top: 20%;
+  z-index: 999999;
 }
 
 .cartPopup-innerbox {

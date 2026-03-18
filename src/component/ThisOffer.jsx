@@ -126,7 +126,7 @@ const ThisOffer = () => {
      {/* cart pop up */}
 
       {isOpen && cartProduct.length > 0 &&(
-        <div className="cartPoPuP-main-box position-absolute">
+        <div className="cartPoPuP-main-box position-fixed">
           <div className=" pt-5 pb-5">
             <div className=" cartPopup-innerbox mx-auto bg-white ">
               <button
