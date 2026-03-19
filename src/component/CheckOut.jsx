@@ -13,8 +13,6 @@ const CheckOut = () => {
     const cardFirstName = document.getElementById("card_name").value;
     const cardSecName = document.getElementById("card-last-name").value;
 
-    
-
     if (!cardNumber || !expDate || !secCode || !cardFirstName || !cardSecName) {
       Swal.fire({
         icon: "error",

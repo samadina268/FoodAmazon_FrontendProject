@@ -1,110 +1,109 @@
-import AllProductContext from "../Allproductcontext/AllProductContext"
-import { useContext, useState } from "react"
-import { useNavigate } from "react-router-dom"
-
+import AllProductContext from "../Allproductcontext/AllProductContext";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SimilarProduct = () => {
+  const { ourProducts, cartProduct, setcartProduct } =
+    useContext(AllProductContext);
 
-    const { ourProducts,  cartProduct, setcartProduct } = useContext(AllProductContext)
+  const navigate = useNavigate();
 
-    const navigate = useNavigate()
+  const [isOpen, setisOpen] = useState(false);
 
-    const [isOpen, setisOpen] = useState(false)
+  const handleAddToCart = (product) => {
+    setcartProduct((prev) => {
+      if (prev.find((p) => p.cartId === product.cartId)) return prev;
+      return [...prev, product];
+    });
 
-    const handleAddToCart = (product) =>{
+    setisOpen(true);
+  };
 
-      setcartProduct((prev) => {
-        if(prev.find((p) => p.cartId === product.cartId)) return prev
-        return [...prev, product]
-      }) 
-
-      setisOpen(true)
-
-    }
-
-    const deleteAddToCartProduct =(cardId) =>{
-      const updatedCart = cartProduct.filter((p) => p.cardId !== cardId)
-      setcartProduct(updatedCart)
-      if (updatedCart.length === 0) setisOpen(false)
-    }
-
+  const deleteAddToCartProduct = (cardId) => {
+    const updatedCart = cartProduct.filter((p) => p.cardId !== cardId);
+    setcartProduct(updatedCart);
+    if (updatedCart.length === 0) setisOpen(false);
+  };
 
   return (
-   <div className="position-relative">
-     <div className="ourProduct-mainbox mx-auto mt-5" id="OurProduct">
-      <div className="">
-        <h1 className="ourProd-h1">Similar Products</h1>
+    <div className="position-relative">
+      <div className="ourProduct-mainbox mx-auto mt-5" id="OurProduct">
+        <div className="">
+          <h1 className="ourProd-h1">Similar Products</h1>
 
-        <div className="row justify-content-between">
-          <div className="col-12 col-sm-5">
-            <p className="ourProd-h1-p pb-0 mt-3">
-              Browse our most popular snacks and make your day more beautiful
-              and glorious.
-            </p>
-          </div>
-          <div className="col-12 col-sm-4 align-items-center d-flex justify-content-start  justify-content-sm-end">
-            <div className="">
-              <button className="btn btn-outline-success">Browse All</button>
+          <div className="row justify-content-between">
+            <div className="col-12 col-sm-5">
+              <p className="ourProd-h1-p pb-0 mt-3">
+                Browse our most popular snacks and make your day more beautiful
+                and glorious.
+              </p>
+            </div>
+            <div className="col-12 col-sm-4 align-items-center d-flex justify-content-start  justify-content-sm-end">
+              <div className="">
+                <button className="btn btn-outline-success">Browse All</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="row g-0 mt-0 mt-md-5 ourprod-main-box justify-content-between">
-        {ourProducts.map((product) => (
-          <div className="col-12 col-lg-4 ourprod-card-box" key={product.id}>
-            <div>
-              <img
-                src={product.image}
-                alt="product image 1"
-                loading="lazy"
-                className="w-100"
-              />
-            </div>
-
-            <div className="row justify-content-between mt-4">
-              <div className="col-5 ourprod-secondname">
-                {product.secondName}
+        <div className="row g-0 mt-0 mt-md-5 ourprod-main-box justify-content-between">
+          {ourProducts.map((product) => (
+            <div className="col-12 col-lg-4 ourprod-card-box" key={product.id}>
+              <div>
+                <img
+                  src={product.image}
+                  alt="product image 1"
+                  loading="lazy"
+                  className="w-100"
+                />
               </div>
-              <div className="col-2">
-                <i
-                  className="ourproduct-card-love-emoji d-flex justify-content-end bxr  bx-heart"
-                  style={{ color: "#0F0B0B" }}
-                ></i>
-              </div>
-            </div>
-            <div className="mt-2 ourprod-productname">
-              {product.productName}
-            </div>
 
-            <div className="row justify-content-between mt-3">
-              <div className="col-8 d-flex align-items-center ">
-                <i
-                  className="bxr  bxs-star ourproduct-card-star-emoji"
-                  style={{ color: "#F58634" }}
-                ></i>{" "}
-                <div className="ms-2 ourprod-rating-review">
-                  {product.rating} ({product.review})
+              <div className="row justify-content-between mt-4">
+                <div className="col-5 ourprod-secondname">
+                  {product.secondName}
+                </div>
+                <div className="col-2">
+                  <i
+                    className="ourproduct-card-love-emoji d-flex justify-content-end bxr  bx-heart"
+                    style={{ color: "#0F0B0B" }}
+                  ></i>
                 </div>
               </div>
-              <div className="col-3 d-flex justify-content-end ourprod-price">
-                ${product.price}
+              <div className="mt-2 ourprod-productname">
+                {product.productName}
               </div>
-            </div>
 
-            <button className="w-100 mt-4 btn btn-outline-success" onClick={() => handleAddToCart(product)}>
-              {product.btn}
-            </button>
-          </div>
-        ))}
+              <div className="row justify-content-between mt-3">
+                <div className="col-8 d-flex align-items-center ">
+                  <i
+                    className="bxr  bxs-star ourproduct-card-star-emoji"
+                    style={{ color: "#F58634" }}
+                  ></i>{" "}
+                  <div className="ms-2 ourprod-rating-review">
+                    {product.rating} ({product.review})
+                  </div>
+                </div>
+                <div className="col-3 d-flex justify-content-end ourprod-price">
+                  ${product.price}
+                </div>
+              </div>
+
+              <button
+                className="w-100 mt-4 btn btn-outline-success"
+                onClick={() => handleAddToCart(product)}
+              >
+                {product.btn}
+              </button>
+            </div>
+          ))}
+        </div>
+
+        <hr className="mt-5 ourprod-hr" />
       </div>
 
-      <hr className="mt-5 ourprod-hr" />
-    </div>
+      {/* cart pop up */}
 
-     {/* cart pop up */}
-
-      {isOpen && cartProduct.length > 0 &&(
+      {isOpen && cartProduct.length > 0 && (
         <div className="cartPoPuP-main-box position-fixed">
           <div className=" pt-5 pb-5">
             <div className=" cartPopup-innerbox mx-auto bg-white ">
@@ -179,7 +178,7 @@ const SimilarProduct = () => {
                       $
                       {cartProduct.reduce(
                         (sum, item) => sum + (item.newPrice || 0),
-                        0
+                        0,
                       )}
                     </div>
                   </div>
@@ -193,10 +192,16 @@ const SimilarProduct = () => {
                   </div>
 
                   <div className="pe-2 ps-2 mb-5">
-                    <button className="mt-3 w-100 addToCart-btn btn btn-success" onClick={() => navigate("/Cart")}>
+                    <button
+                      className="mt-3 w-100 addToCart-btn btn btn-success"
+                      onClick={() => navigate("/Cart")}
+                    >
                       Add to Cart
                     </button>
-                    <button className="w-100 mt-2 checkOut-btn btn btn-success " onClick={() => navigate("/Checkout")}>
+                    <button
+                      className="w-100 mt-2 checkOut-btn btn btn-success "
+                      onClick={() => navigate("/Checkout")}
+                    >
                       Check Out
                     </button>
                   </div>
@@ -206,10 +211,8 @@ const SimilarProduct = () => {
           </div>
         </div>
       )}
+    </div>
+  );
+};
 
-
-   </div>
-  )
-}
-
-export default SimilarProduct
+export default SimilarProduct;

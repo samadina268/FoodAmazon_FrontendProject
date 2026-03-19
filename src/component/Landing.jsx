@@ -8,19 +8,17 @@ import ThisOffer from "./ThisOffer";
 import SubscribeNewletter from "./SubscribeNewletter";
 import Footer from "./Footer";
 
-
 const Landing = () => {
   return (
     <div>
-
-        <Header />
-        <Hero />
-        <OurProduct />
-        <OrganicSnack />
-        <BulkOrder />
-        <OurNewProduct />
-        <ThisOffer />
-        <SubscribeNewletter />
+      <Header />
+      <Hero />
+      <OurProduct />
+      <OrganicSnack />
+      <BulkOrder />
+      <OurNewProduct />
+      <ThisOffer />
+      <SubscribeNewletter />
 
       <Footer />
     </div>

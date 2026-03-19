@@ -10,14 +10,11 @@ import SimilarProduct from "./SimilarProduct";
 import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
 
-
-
-
-const ProductDetails = () => { 
+const ProductDetails = () => {
   const { id } = useParams();
-   const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const [add, setadd] = useState(0)
+  const [add, setadd] = useState(0);
 
   const { bulk, ourProducts } = useContext(AllProductContext);
 
@@ -31,9 +28,7 @@ const ProductDetails = () => {
 
   return (
     <div>
-
-        <Header/>
-    
+      <Header />
 
       <div className="productdetails-mainbox mx-auto">
         <div className="row ">
@@ -47,12 +42,12 @@ const ProductDetails = () => {
               />
             </div>
             <div className="col-8 mx-auto mt-4">
-               <img
+              <img
                 src={ProductDetailsSmallProduct}
                 alt="Bulk order figcapture"
                 loading="lazy"
                 className="w-100"
-              /> 
+              />
             </div>
           </div>
           <div className="col-12 col-md-6 mt-5 mt-md-0 ps-lg-5 ">
@@ -80,7 +75,9 @@ const ProductDetails = () => {
                     <ul className="product-varienty-ul">
                       <li className="product-varienty-li ">Classic Nut Mix</li>
                       <li className="product-varienty-li ">Spicy Nut Mix</li>
-                      <li className="product-varienty-li ">Sweet & Salty Nut Mix</li>
+                      <li className="product-varienty-li ">
+                        Sweet & Salty Nut Mix
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -88,11 +85,31 @@ const ProductDetails = () => {
                 <div className="d-flex mt-2">
                   <div className="product-quantity">Quantity:</div>
                   <div className="">
-                    <button className="ms-3 product-quantity-btn  " onClick={() => setadd((prev) => prev > 0 ? prev - 1 : 0) }><div className="d-flex align-items-center justify-content-center">-</div></button>
+                    <button
+                      className="ms-3 product-quantity-btn  "
+                      onClick={() =>
+                        setadd((prev) => (prev > 0 ? prev - 1 : 0))
+                      }
+                    >
+                      <div className="d-flex align-items-center justify-content-center">
+                        -
+                      </div>
+                    </button>
 
-                    <button className="ms-3 product-quantity-btn-display  "><div className="d-flex align-items-center justify-content-center">{add}</div></button>
-                    
-                    <button className="ms-3 product-quantity-btn  " onClick={() => setadd((prev) => prev + 1)}><div className="d-flex align-items-center justify-content-center">+</div></button>
+                    <button className="ms-3 product-quantity-btn-display  ">
+                      <div className="d-flex align-items-center justify-content-center">
+                        {add}
+                      </div>
+                    </button>
+
+                    <button
+                      className="ms-3 product-quantity-btn  "
+                      onClick={() => setadd((prev) => prev + 1)}
+                    >
+                      <div className="d-flex align-items-center justify-content-center">
+                        +
+                      </div>
+                    </button>
                   </div>
                 </div>
 
@@ -103,8 +120,18 @@ const ProductDetails = () => {
                 </div>
 
                 <div>
-                  <button className="mt-3 w-100 addToCart-btn btn btn-success" onClick={() => navigate(`/Cart/${products.id}`)}>Add to Cart</button>
-                  <button onClick={() => navigate("/Checkout")} className="w-100 mt-2 checkOut-btn btn btn-success">Check Out</button>
+                  <button
+                    className="mt-3 w-100 addToCart-btn btn btn-success"
+                    onClick={() => navigate(`/Cart/${products.id}`)}
+                  >
+                    Add to Cart
+                  </button>
+                  <button
+                    onClick={() => navigate("/Checkout")}
+                    className="w-100 mt-2 checkOut-btn btn btn-success"
+                  >
+                    Check Out
+                  </button>
                 </div>
               </div>
             </div>
@@ -123,16 +150,22 @@ const ProductDetails = () => {
 
           <div className="mt-4">
             <ul className="product-about-ul">
-              <li className="product-about-li">Blend of organic almonds, cashews, and walnuts</li>
-              <li className="product-about-li">Lightly roasted to enhance natural flavors</li>
-              <li className="product-about-li">No added oils or preservatives</li>
+              <li className="product-about-li">
+                Blend of organic almonds, cashews, and walnuts
+              </li>
+              <li className="product-about-li">
+                Lightly roasted to enhance natural flavors
+              </li>
+              <li className="product-about-li">
+                No added oils or preservatives
+              </li>
             </ul>
           </div>
 
           <div className="mt-3 product-about-benefits ">
-            <span className="product-about-benefits-span ">Benefits</span> Excellent source of protein and healthy fats.
-            Supports heart health and brain function. Satisfies hunger and
-            boosts energy.
+            <span className="product-about-benefits-span ">Benefits</span>{" "}
+            Excellent source of protein and healthy fats. Supports heart health
+            and brain function. Satisfies hunger and boosts energy.
           </div>
         </div>
 
@@ -140,7 +173,9 @@ const ProductDetails = () => {
           <div className="col-12 col-md-6">
             <h4 className="product-customer-h4">Customer Reviews</h4>
             <div>
-              <span className="product-customer-h4-span mt-4 d-block">77 Reviews</span>
+              <span className="product-customer-h4-span mt-4 d-block">
+                77 Reviews
+              </span>
 
               <div className="col-4 mt-3">
                 <img
@@ -150,73 +185,126 @@ const ProductDetails = () => {
                   className="w-100"
                 />
               </div>
-              
+
               <div className="mt-5">
-
                 <div className="d-flex justify-content-between align-items-center ">
-                <div className="col-2 product-customer-star ">5 Stars</div>
-                
-                <div className="col-9 "  style={{height:"4px", backgroundColor:"#C4D1D0"}}>
-                  <div className="" style={{ width: "75%", height:"100%", backgroundColor:"#404B4B"  }} ></div>
+                  <div className="col-2 product-customer-star ">5 Stars</div>
+
+                  <div
+                    className="col-9 "
+                    style={{ height: "4px", backgroundColor: "#C4D1D0" }}
+                  >
+                    <div
+                      className=""
+                      style={{
+                        width: "75%",
+                        height: "100%",
+                        backgroundColor: "#404B4B",
+                      }}
+                    ></div>
+                  </div>
+
+                  <div className="col-1 d-flex justify-content-end product-customer-star-num">
+                    37
+                  </div>
                 </div>
-
-                <div className="col-1 d-flex justify-content-end product-customer-star-num">37</div>
-              </div>
-
 
                 <div className="d-flex justify-content-between align-items-center">
-                <div className="col-2 product-customer-star">4 Stars</div>
+                  <div className="col-2 product-customer-star">4 Stars</div>
 
-                <div className="col-9"  style={{height:"4px", backgroundColor: "#C4D1D0"}}>
-                  <div className="" style={{ width: "55%", height:"100%", backgroundColor:"#404B4B"  }} ></div>
+                  <div
+                    className="col-9"
+                    style={{ height: "4px", backgroundColor: "#C4D1D0" }}
+                  >
+                    <div
+                      className=""
+                      style={{
+                        width: "55%",
+                        height: "100%",
+                        backgroundColor: "#404B4B",
+                      }}
+                    ></div>
+                  </div>
+
+                  <div className="col-1 d-flex justify-content-end product-customer-star-num">
+                    20
+                  </div>
                 </div>
-
-                <div className="col-1 d-flex justify-content-end product-customer-star-num">20</div>
-              </div>
-
 
                 <div className="d-flex justify-content-between align-items-center">
-                <div className="col-2 product-customer-star">3 Stars</div>
+                  <div className="col-2 product-customer-star">3 Stars</div>
 
-                <div className="col-9"  style={{height:"4px", backgroundColor: "#C4D1D0"}}>
-                  <div className="" style={{ width: "45%", height:"100%", backgroundColor:"#404B4B"  }} ></div>
+                  <div
+                    className="col-9"
+                    style={{ height: "4px", backgroundColor: "#C4D1D0" }}
+                  >
+                    <div
+                      className=""
+                      style={{
+                        width: "45%",
+                        height: "100%",
+                        backgroundColor: "#404B4B",
+                      }}
+                    ></div>
+                  </div>
+
+                  <div className="col-1 d-flex justify-content-end product-customer-star-num">
+                    12
+                  </div>
                 </div>
-
-                <div className="col-1 d-flex justify-content-end product-customer-star-num">12</div>
-              </div>
-
 
                 <div className="d-flex justify-content-between align-items-center">
-                <div className="col-2 product-customer-star">2 Stars</div>
+                  <div className="col-2 product-customer-star">2 Stars</div>
 
-                <div className="col-9"  style={{height:"4px", backgroundColor: "#C4D1D0"}}>
-                  <div className="" style={{ width: "25%", height:"100%", backgroundColor:"#404B4B"  }} ></div>
+                  <div
+                    className="col-9"
+                    style={{ height: "4px", backgroundColor: "#C4D1D0" }}
+                  >
+                    <div
+                      className=""
+                      style={{
+                        width: "25%",
+                        height: "100%",
+                        backgroundColor: "#404B4B",
+                      }}
+                    ></div>
+                  </div>
+
+                  <div className="col-1 d-flex justify-content-end product-customer-star-num">
+                    8
+                  </div>
                 </div>
 
-                <div className="col-1 d-flex justify-content-end product-customer-star-num">8</div>
-              </div>
-
-              
                 <div className="d-flex justify-content-between align-items-center">
-                <div className="col-2 product-customer-star">1 Star</div>
+                  <div className="col-2 product-customer-star">1 Star</div>
 
-                <div className="col-9"  style={{height:"4px", backgroundColor: "#C4D1D0"}}>
-                  <div className="" style={{ width: "0%", height:"100%", backgroundColor:"#404B4B"  }} ></div>
+                  <div
+                    className="col-9"
+                    style={{ height: "4px", backgroundColor: "#C4D1D0" }}
+                  >
+                    <div
+                      className=""
+                      style={{
+                        width: "0%",
+                        height: "100%",
+                        backgroundColor: "#404B4B",
+                      }}
+                    ></div>
+                  </div>
+
+                  <div className="col-1 d-flex justify-content-end product-customer-star-num">
+                    0
+                  </div>
                 </div>
-
-                <div className="col-1 d-flex justify-content-end product-customer-star-num">0</div>
               </div>
-
-              </div>
-              
-
-
             </div>
           </div>
 
           <div className="col-12 col-md-6 ps-lg-5  ">
             <div>
-              <h4 className="product-rate-h4 mt-5 mt-md-0 pt-4 pt-md-0">How would you rate this?</h4>
+              <h4 className="product-rate-h4 mt-5 mt-md-0 pt-4 pt-md-0">
+                How would you rate this?
+              </h4>
               <div className="col-4 mt-3">
                 <img
                   src={RatingBlackStar}
@@ -229,7 +317,10 @@ const ProductDetails = () => {
 
             <div>
               <form action="#" method="get">
-                <label className="d-block product-rate-label mt-3" htmlFor="text">
+                <label
+                  className="d-block product-rate-label mt-3"
+                  htmlFor="text"
+                >
                   Add a headline
                 </label>
                 <textarea
@@ -237,10 +328,14 @@ const ProductDetails = () => {
                   name="text"
                   id="text"
                   placeholder="Write a summary of your review"
-                  required className="w-100 mt-2 pb-2 ps-3 pe-3 pt-2 product-rate-textarea"
+                  required
+                  className="w-100 mt-2 pb-2 ps-3 pe-3 pt-2 product-rate-textarea"
                 ></textarea>
 
-                <label className="d-block  product-rate-label mt-3" htmlFor="textArea" >
+                <label
+                  className="d-block  product-rate-label mt-3"
+                  htmlFor="textArea"
+                >
                   Write a review
                 </label>
                 <textarea
@@ -248,7 +343,8 @@ const ProductDetails = () => {
                   name="textArea"
                   id="textArea"
                   placeholder="Tell us what do you think"
-                  required className="w-100 mt-2 ps-3 pe-3 pt-2 product-rate-textarea-2"
+                  required
+                  className="w-100 mt-2 ps-3 pe-3 pt-2 product-rate-textarea-2"
                 ></textarea>
 
                 <button type="submit" className="btn btn-success d-block mt-4">
@@ -260,10 +356,9 @@ const ProductDetails = () => {
         </div>
       </div>
 
-      <Review/>
-      <SimilarProduct/>
-      <Footer/>
-
+      <Review />
+      <SimilarProduct />
+      <Footer />
     </div>
   );
 };

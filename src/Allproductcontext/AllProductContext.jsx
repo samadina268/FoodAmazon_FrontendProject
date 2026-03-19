@@ -1,5 +1,5 @@
-import { createContext } from "react"
+import { createContext } from "react";
 
-const AllProductContext = createContext()
+const AllProductContext = createContext();
 
-export default AllProductContext
+export default AllProductContext;

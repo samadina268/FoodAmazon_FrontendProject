@@ -69,7 +69,6 @@ const Review = () => {
       <div className="row mt-5  justify-content-between mx-auto ">
         {reviewsPpf.map((pfp) => (
           <div className="col-12  review-cardbox rounded-4 " key={pfp.id}>
-
             <div className=" review-inner-cardbox ">
               <div className="col-3">
                 <img
@@ -78,7 +77,6 @@ const Review = () => {
                   loading="lazy"
                   className="w-100"
                 />
-                
               </div>
               <div className="mt-2 pfp-name">{pfp.name}</div>
               <div className="col-4">
@@ -87,13 +85,11 @@ const Review = () => {
                   alt="pfp profile star"
                   loading="lazy"
                   className="w-100"
-                /></div>
+                />
+              </div>
               <div className="mt-3 pfp-productname">{pfp.productName}</div>
               <div className="pfp-review mt-3">{pfp.review}</div>
-
-
             </div>
-
           </div>
         ))}
       </div>

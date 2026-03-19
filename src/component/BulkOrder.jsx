@@ -3,7 +3,6 @@ import { useContext } from "react";
 import AllProductContext from "../Allproductcontext/AllProductContext";
 import { useNavigate } from "react-router-dom";
 
-
 const BulkOrder = () => {
   const { bulk } = useContext(AllProductContext);
 
@@ -24,7 +23,10 @@ const BulkOrder = () => {
 
         <div className="row g-0 mt-lg-5 pt-lg-5 justify-content-between mb-4">
           {bulk.map((order) => (
-            <div className="col-12 col-lg-3 bulkOderCard rounded-3" key={order.id}>
+            <div
+              className="col-12 col-lg-3 bulkOderCard rounded-3"
+              key={order.id}
+            >
               <div>
                 <img
                   src={order.image}
@@ -47,7 +49,6 @@ const BulkOrder = () => {
                     style={{ color: "#00A859", fontSize: "24px" }}
                   ></i>{" "}
                 </button>
-               
               </div>
             </div>
           ))}

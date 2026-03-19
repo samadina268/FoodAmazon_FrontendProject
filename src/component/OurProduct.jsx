@@ -3,13 +3,12 @@ import AllProductContext from "../Allproductcontext/AllProductContext";
 import { Navigate, useNavigate } from "react-router-dom";
 import CheckOut from "./CheckOut";
 
-
 const OurProduct = () => {
-
-  const {ourProducts, cartProduct, setcartProduct} = useContext(AllProductContext)
+  const { ourProducts, cartProduct, setcartProduct } =
+    useContext(AllProductContext);
 
   const [isOpen, setisOpen] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   //  Add product to cart
   const handleAddToCart = (product) => {
@@ -27,10 +26,6 @@ const OurProduct = () => {
     if (updatedCart.length === 0) setisOpen(false);
   };
 
-
- 
-
-  
   return (
     <div className="position-relative">
       <div className="ourProduct-mainbox mx-auto mt-5" id="OurProduct">
@@ -109,7 +104,7 @@ const OurProduct = () => {
 
       {/* cart pop up */}
 
-      {isOpen && cartProduct.length > 0 &&(
+      {isOpen && cartProduct.length > 0 && (
         <div className="cartPoPuP-main-box position-fixed">
           <div className=" pt-5 pb-5">
             <div className=" cartPopup-innerbox mx-auto bg-white ">
@@ -184,7 +179,7 @@ const OurProduct = () => {
                       $
                       {cartProduct.reduce(
                         (sum, item) => sum + (item.newPrice || 0),
-                        0
+                        0,
                       )}
                     </div>
                   </div>
@@ -198,10 +193,16 @@ const OurProduct = () => {
                   </div>
 
                   <div className="pe-2 ps-2 mb-5">
-                    <button className="mt-3 w-100 addToCart-btn btn btn-success" onClick={() => navigate("/Cart")}>
+                    <button
+                      className="mt-3 w-100 addToCart-btn btn btn-success"
+                      onClick={() => navigate("/Cart")}
+                    >
                       Add to Cart
                     </button>
-                    <button className="w-100 mt-2 checkOut-btn btn btn-success " onClick={() => navigate("/Checkout")}>
+                    <button
+                      className="w-100 mt-2 checkOut-btn btn btn-success "
+                      onClick={() => navigate("/Checkout")}
+                    >
                       Check Out
                     </button>
                   </div>
@@ -216,5 +217,3 @@ const OurProduct = () => {
 };
 
 export default OurProduct;
-
-

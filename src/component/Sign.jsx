@@ -1,107 +1,108 @@
+import Signimage2 from "../assets/images/sign-image-2.png";
 import SignImg from "../assets/images/sign-img.png";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import Joi from "joi";
- 
 
 const Sign = () => {
-
   const [showPassword, setshowPassword] = useState(false);
 
   const [name, setname] = useState("");
   const [email, setemail] = useState("");
   const [phone, setphone] = useState("");
   const [password, setpassword] = useState("");
+  const [errors, seterrors] = useState("");
   const navigate = useNavigate();
 
   const schema = Joi.object({
-     name: Joi.string().min(4).max(30).required(),
-     email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }),
-     phone: Joi.string().pattern(/^[0-9]{11}$/).required(),
-    password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required()
-  })
-
- 
+    name: Joi.string().min(4).max(30).required(),
+    email: Joi.string().email({
+      minDomainSegments: 2,
+      tlds: { allow: ["com", "net"] },
+    }),
+    phone: Joi.string()
+      .pattern(/^[0-9]{11}$/)
+      .required(),
+    password: Joi.string()
+      .pattern(new RegExp("^[a-zA-Z0-9]{3,30}$"))
+      .required(),
+  });
 
   const handleSubmit = async (e) => {
-   e.preventDefault()
-    
-   const {error} = schema.validate({
-    name, email, phone, password
-   }) 
+    e.preventDefault();
+
+    const { error } = schema.validate({
+      name,
+      email,
+      phone,
+      password,
+    });
 
     if (error) {
-    Swal.fire({
-      icon: "error",
-      title: "Validation error",
-      text: error.details[0].message
-    })
-    return
-  }
-  const data = {
-    fullname: name,
-    email: email,
-    phonenumber: phone,
-    password: password
-  }
-  try {
-    const response = await fetch("https://food-amazon-backend-project.vercel.app/home/register",  {
-      method : "post",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(data)
-    })
-    
-    const result = await response.json()
-
-    if(response.ok){
-      Swal.fire({
-        title: "Success!",
-        text: "You have successfully signed Up. You will be moved to Sign In.",
-        icon: "success",
-        confirmButtonText: "OK",
-      }).then(() => {
-        navigate("/SignIn");
-      })
-    }else{
-      const errormesage = typeof result === "string" ? result:
-      result.message ? result.message : "signup failed"
-      
-      Swal.fire({
-      icon: "error",
-      title: "error",
-      text: errormesage
-      })
+      seterrors(error.details[0].message);
+      return;
     }
+    const data = {
+      fullname: name,
+      email: email,
+      phonenumber: phone,
+      password: password,
+    };
+    try {
+      const response = await fetch(
+        "https://food-amazon-backend-project.vercel.app/home/register",
+        {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        },
+      );
 
-  } catch(error){
-   console.log(error)
-   Swal.fire({
-    icon: "error",
-    title: "Server Error",
-    text: "Unable to connect to server"
-  })
-  }
+      const result = await response.json();
 
-
-  
-
-
-   
+      if (response.ok) {
+        Swal.fire({
+          title: "Success!",
+          text: "You have successfully signed Up. You will be moved to Sign In.",
+          icon: "success",
+          confirmButtonText: "OK",
+        }).then(() => {
+          navigate("/SignIn");
+        });
+      } else {
+        const errormessage =
+          typeof result === "string"
+            ? result
+            : result.message
+              ? result.message
+              : "signup failed";
+        seterrors(errormessage);
+      }
+    } catch (error) {
+      console.log(error);
+      seterrors(["unable to connect to server"]);
+    }
   };
 
-
-
   return (
-     <div className="">
+    <div className="">
       <div className="row g-0 sign-main-part">
-        <div className="col-12 col-md-6 col-lg-6">
-          <div className="w-100">
+        <div className="col-12 col-md-6 col-lg-6 ">
+          <div className="w-100 d-none d-md-block ">
             <img
               src={SignImg}
               alt="Food amazon SignImg "
               loading="lazy"
-              className="w-100"
+              className="w-100 sign-img"
+            />
+          </div>
+          <div className="d-md-none">
+            <img
+              src={Signimage2}
+              alt="Food amazon SignImg "
+              loading="lazy"
+              className="w-100 sign-img"
             />
           </div>
         </div>
@@ -111,8 +112,12 @@ const Sign = () => {
               <h1 className="sign-h1">Sign Up</h1>
               <span className="sign-h1-span mt-4 d-block">
                 Already have an account?
-                <button className="ms-2 sign-h1-span-btn text-decoration-none border-0 " onClick={() => navigate("/SignIn")}>Sign In</button>
-                
+                <button
+                  className="ms-2 sign-h1-span-btn text-decoration-none border-0 "
+                  onClick={() => navigate("/SignIn")}
+                >
+                  Sign In
+                </button>
               </span>
 
               <form action="#" method="get">
@@ -180,7 +185,11 @@ const Sign = () => {
                   </button>
                 </div>
 
-                <label hFor="checkbox" className="checkbox-label mt-4 ">
+                <div className="mt-3">
+                  <p className="text-center error-test">{errors}</p>
+                </div>
+
+                <label hFor="checkbox" className="checkbox-label mt-3 ">
                   <input
                     className="checkbox-input me-2 "
                     type="checkbox"
@@ -205,7 +214,7 @@ const Sign = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Sign
+export default Sign;

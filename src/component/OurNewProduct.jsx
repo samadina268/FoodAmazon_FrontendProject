@@ -177,7 +177,7 @@ const OurNewProduct = () => {
                       $
                       {cartProduct.reduce(
                         (sum, item) => sum + (item.newPrice || 0),
-                        0
+                        0,
                       )}
                     </div>
                   </div>

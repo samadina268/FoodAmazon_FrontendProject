@@ -22,6 +22,16 @@ link {
   src: url(../src/fonts/MDNichromeTest-Bold.otf);
 }
 
+.sign-main-part {
+  height: 100vh;
+}
+
+.sign-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .sign-h1 {
   color: #00a859;
   font-family: "nichrome-Bold";
@@ -56,6 +66,10 @@ link {
   color: #7c797a;
   top: 20px;
   right: 10px;
+}
+
+.error-test {
+  color: #ff0101;
 }
 
 .checkbox-input {
@@ -195,46 +209,42 @@ link {
   font-family: "Inter", sans-serif;
 }
 
-.Herovect{
+.Herovect {
   bottom: -4%;
   z-index: -9999999;
-  
 }
-
 
 .hero-footer-img {
   background-color: #2a9708e0;
   display: none;
 }
 
-.hero-footer-inner-note{
+.hero-footer-inner-note {
   width: 60%;
 }
 
-
-.hero-main-footer{
+.hero-main-footer {
   border-top-left-radius: 2rem;
   border-top-right-radius: 2rem;
-  background-color: #259B00;
+  background-color: #259b00;
 }
 
-.HeroMainBg{
+.HeroMainBg {
   top: 0%;
 }
 
-.hero-footer-num{
+.hero-footer-num {
   color: white;
   font-weight: 500;
   font-size: 56px;
-   font-family: "nichrome-Bold";
-
+  font-family: "nichrome-Bold";
 }
 
-.hero-footer-num-span{
+.hero-footer-num-span {
   color: white;
   font-weight: 500;
   font-size: 16px;
-    font-family: "Inter", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 @media (max-width: 490px) {
@@ -258,24 +268,19 @@ link {
     margin-top: 8rem;
   }
 
-  .hero-footer-num{
-  font-size: 36px; 
+  .hero-footer-num {
+    font-size: 36px;
+  }
 }
-  
-}
-
 
 @media (max-width: 992px) {
- .hero-footer-inner-note{
-  width: 85%;
-}
+  .hero-footer-inner-note {
+    width: 85%;
+  }
 
-.hero-footer-num{
-  
-  font-size: 46px;
-  
-}
-  
+  .hero-footer-num {
+    font-size: 46px;
+  }
 }
 @media (min-width: 992px) {
   .hero-bg-hover {
@@ -289,7 +294,6 @@ link {
   .hero-footer-img {
     display: block;
   }
-  
 }
 
 /* Our Product and Our new product section and Similar Products and people also buy*/
@@ -918,7 +922,7 @@ link {
 
 /* cart section */
 
-.cart-mainbox{
+.cart-mainbox {
   margin-top: 9rem;
 }
 

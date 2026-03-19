@@ -8,6 +8,11 @@ const Header = () => {
     navigate("/landing");
   };
 
+  const logOut = () => {
+    localStorage.removeItem("token");
+    navigate("/SignIn");
+  };
+
   return (
     <div className="position-fixed fixed-top headerbox">
       <nav className="navbar navbar-expand-lg">
@@ -72,13 +77,16 @@ const Header = () => {
                   className="nav-link active header-navlink"
                   aria-current="page"
                   href="#newsletter"
-                   onClick={handlenavlist}
+                  onClick={handlenavlist}
                 >
                   Blog
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link active header-navlink" href="#faqs"  onClick={handlenavlist}
+                <a
+                  className="nav-link active header-navlink"
+                  href="#faqs"
+                  onClick={handlenavlist}
                 >
                   FAQs
                 </a>
@@ -95,13 +103,18 @@ const Header = () => {
                 style={{ color: "#0F0B0B", fontSize: "30px" }}
               ></i>
               <i
-                className="bx bx-groceries shopping-icon me-4 " onClick={() => navigate("/Cart")}
-                style={{ color: "#0F0B0B", fontSize: "30px", cursor: "pointer", }}
+                className="bx bx-groceries shopping-icon me-4 "
+                onClick={() => navigate("/Cart")}
+                style={{
+                  color: "#0F0B0B",
+                  fontSize: "30px",
+                  cursor: "pointer",
+                }}
               ></i>
             </div>
 
-            <button className="btn btn-success" type="submit">
-              Contact Us
+            <button className="btn btn-success " type="submit" onClick={logOut}>
+              Log Out
             </button>
           </div>
         </div>

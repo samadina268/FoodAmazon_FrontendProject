@@ -5,7 +5,6 @@ import AllProductContext from "../Allproductcontext/AllProductContext";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
-
 const newOurProduct = [
   {
     id: 4,
@@ -20,112 +19,114 @@ const newOurProduct = [
 ];
 
 const ThisOffer = () => {
-  const { ourProducts ,  cartProduct, setcartProduct } = useContext(AllProductContext);
+  const { ourProducts, cartProduct, setcartProduct } =
+    useContext(AllProductContext);
 
   const newOurProductToShow = [...newOurProduct, ...ourProducts];
-  const [isOpen, setisOpen] = useState(false)
+  const [isOpen, setisOpen] = useState(false);
 
- const navigate = useNavigate() 
+  const navigate = useNavigate();
 
- const handleAddToCart = (product) =>{
-  setisOpen(true)
-  setcartProduct((prev) => {
-    if(prev.find((p) => p.cartId === product.cartId)) return prev
-    return [...prev, product]
-  })
- }
+  const handleAddToCart = (product) => {
+    setisOpen(true);
+    setcartProduct((prev) => {
+      if (prev.find((p) => p.cartId === product.cartId)) return prev;
+      return [...prev, product];
+    });
+  };
 
- const deleteAddToCartProduct = (cartId) =>{
-  const updatedCart = cartProduct.filter((p) => p.cartId !== cartId)
-  setcartProduct(updatedCart);
-  if (updatedCart.length === 0) setisOpen(false)
- }
+  const deleteAddToCartProduct = (cartId) => {
+    const updatedCart = cartProduct.filter((p) => p.cartId !== cartId);
+    setcartProduct(updatedCart);
+    if (updatedCart.length === 0) setisOpen(false);
+  };
 
-  
   return (
-   <div className="position-relative">
-
-     <div className="thisOffer-mainBox mx-auto mt-5 pt-5">
-      <div>
-        <div className="row justify-content-between">
-          <div className="col-12 col-sm-5">
-            <p className="thisOffer-h1 pb-0 mt-3">
-              Hurry Do not Miss Out On This Offers!
-            </p>
-          </div>
-          <div className="col-12 col-sm-4 align-items-center d-flex justify-content-start  justify-content-sm-end">
-            <div className="">
-              <button className="btn btn-success">Browse All</button>
+    <div className="position-relative">
+      <div className="thisOffer-mainBox mx-auto mt-5 pt-5">
+        <div>
+          <div className="row justify-content-between">
+            <div className="col-12 col-sm-5">
+              <p className="thisOffer-h1 pb-0 mt-3">
+                Hurry Do not Miss Out On This Offers!
+              </p>
+            </div>
+            <div className="col-12 col-sm-4 align-items-center d-flex justify-content-start  justify-content-sm-end">
+              <div className="">
+                <button className="btn btn-success">Browse All</button>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="row g-0 mt-0 mt-md-5 ourprod-main-box justify-content-between">
-          <div className="col-12 col-lg-8 thisOfferBlackFriday">
-            <img
-              src={ThisOfferBanner}
-              alt="this offer banner"
-              className="w-100 "
-              loading="lazy"
-            />
-          </div>
+          <div className="row g-0 mt-0 mt-md-5 ourprod-main-box justify-content-between">
+            <div className="col-12 col-lg-8 thisOfferBlackFriday">
+              <img
+                src={ThisOfferBanner}
+                alt="this offer banner"
+                className="w-100 "
+                loading="lazy"
+              />
+            </div>
 
-          {newOurProductToShow.map((product) => (
-            <div
-              className="col-12 col-lg-4 thisOffer-card-box"
-              key={product.id}
-            >
-              <div>
-                <img
-                  src={product.image}
-                  alt="product image 1"
-                  loading="lazy"
-                  className="w-100"
-                />
-              </div>
-
-              <div className="row justify-content-between mt-4">
-                <div className="col-5 ourprod-secondname">
-                  {product.secondName}
+            {newOurProductToShow.map((product) => (
+              <div
+                className="col-12 col-lg-4 thisOffer-card-box"
+                key={product.id}
+              >
+                <div>
+                  <img
+                    src={product.image}
+                    alt="product image 1"
+                    loading="lazy"
+                    className="w-100"
+                  />
                 </div>
-                <div className="col-2">
-                  <i
-                    className="ourproduct-card-love-emoji d-flex justify-content-end bxr  bx-heart"
-                    style={{ color: "#0F0B0B" }}
-                  ></i>
-                </div>
-              </div>
-              <div className="mt-2 ourprod-productname">
-                {product.productName}
-              </div>
 
-              <div className="row justify-content-between mt-3">
-                <div className="col-8 d-flex align-items-center ">
-                  <i
-                    className="bxr  bxs-star ourproduct-card-star-emoji"
-                    style={{ color: "#F58634" }}
-                  ></i>{" "}
-                  <div className="ms-2 ourprod-rating-review">
-                    {product.rating} ({product.review})
+                <div className="row justify-content-between mt-4">
+                  <div className="col-5 ourprod-secondname">
+                    {product.secondName}
+                  </div>
+                  <div className="col-2">
+                    <i
+                      className="ourproduct-card-love-emoji d-flex justify-content-end bxr  bx-heart"
+                      style={{ color: "#0F0B0B" }}
+                    ></i>
                   </div>
                 </div>
-                <div className="col-3 d-flex justify-content-end ourprod-price">
-                  ${product.price}
+                <div className="mt-2 ourprod-productname">
+                  {product.productName}
                 </div>
-              </div>
 
-              <button className="w-100 mt-4 btn btn-outline-success" onClick={() => handleAddToCart(product)}>
-                {product.btn}
-              </button>
-            </div>
-          ))}
+                <div className="row justify-content-between mt-3">
+                  <div className="col-8 d-flex align-items-center ">
+                    <i
+                      className="bxr  bxs-star ourproduct-card-star-emoji"
+                      style={{ color: "#F58634" }}
+                    ></i>{" "}
+                    <div className="ms-2 ourprod-rating-review">
+                      {product.rating} ({product.review})
+                    </div>
+                  </div>
+                  <div className="col-3 d-flex justify-content-end ourprod-price">
+                    ${product.price}
+                  </div>
+                </div>
+
+                <button
+                  className="w-100 mt-4 btn btn-outline-success"
+                  onClick={() => handleAddToCart(product)}
+                >
+                  {product.btn}
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
 
-     {/* cart pop up */}
+      {/* cart pop up */}
 
-      {isOpen && cartProduct.length > 0 &&(
+      {isOpen && cartProduct.length > 0 && (
         <div className="cartPoPuP-main-box position-fixed">
           <div className=" pt-5 pb-5">
             <div className=" cartPopup-innerbox mx-auto bg-white ">
@@ -200,7 +201,7 @@ const ThisOffer = () => {
                       $
                       {cartProduct.reduce(
                         (sum, item) => sum + (item.newPrice || 0),
-                        0
+                        0,
                       )}
                     </div>
                   </div>
@@ -214,10 +215,16 @@ const ThisOffer = () => {
                   </div>
 
                   <div className="pe-2 ps-2 mb-5">
-                    <button className="mt-3 w-100 addToCart-btn btn btn-success" onClick={() => navigate("/cart")}>
+                    <button
+                      className="mt-3 w-100 addToCart-btn btn btn-success"
+                      onClick={() => navigate("/cart")}
+                    >
                       Add to Cart
                     </button>
-                    <button className="w-100 mt-2 checkOut-btn btn btn-success " onClick={() => navigate("/Checkout")}>
+                    <button
+                      className="w-100 mt-2 checkOut-btn btn btn-success "
+                      onClick={() => navigate("/Checkout")}
+                    >
                       Check Out
                     </button>
                   </div>
@@ -227,9 +234,7 @@ const ThisOffer = () => {
           </div>
         </div>
       )}
-
-
-   </div>
+    </div>
   );
 };
 

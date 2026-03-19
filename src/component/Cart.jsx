@@ -6,54 +6,53 @@ import PeopleAlsoBuy from "./PeopleAlsoBuy";
 import Footer from "./Footer";
 import Swal from "sweetalert2";
 
-
 const Cart = () => {
   const { cartProduct, setcartProduct } = useContext(AllProductContext);
-  
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const deleteAddToCartProduct = (cartId) => {
     setcartProduct((prev) => prev.filter((p) => p.cartId !== cartId));
   };
 
   const [add, setadd] = useState(0);
 
-  let originalPrice = cartProduct.reduce((sum, item) => sum + (item.newPrice || 0), 0)
+  let originalPrice = cartProduct.reduce(
+    (sum, item) => sum + (item.newPrice || 0),
+    0,
+  );
 
-  let saving = originalPrice > 0 ? 23 : 0
-  let tax =  originalPrice > 0 ? 3.5 : 0
-  
+  let saving = originalPrice > 0 ? 23 : 0;
+  let tax = originalPrice > 0 ? 3.5 : 0;
 
-  let total = originalPrice - saving + tax 
+  let total = originalPrice - saving + tax;
 
-  const checkOut = () =>{
-    if (originalPrice > 0){
-      navigate("/Checkout")
-    }else{
-       Swal.fire({
-      icon: "info",
-      title: "No items to checkout",
-      text: "Your cart is empty",
-      confirmButtonText: "OK"
-    });
+  const checkOut = () => {
+    if (originalPrice > 0) {
+      navigate("/Checkout");
+    } else {
+      Swal.fire({
+        icon: "info",
+        title: "No items to checkout",
+        text: "Your cart is empty",
+        confirmButtonText: "OK",
+      });
     }
-  }
+  };
 
   return (
     <div>
-      <Header/>
+      <Header />
       <div className="cart-mainbox mx-auto">
         <div className="row justify-content-between ">
           <div className="col-12 col-lg-6">
-             <h2 className="checkOut-h2 mt-5 mt-md-0">Shopping Cart</h2>
+            <h2 className="checkOut-h2 mt-5 mt-md-0">Shopping Cart</h2>
 
-              {cartProduct.length === 0 && (
-    <div className="text-center mt-4">
-       <h2 className="checkOut-h2">Your cart is empty</h2>
-            <p>Add items to continue shopping</p>
-    </div>
-  )}
-
+            {cartProduct.length === 0 && (
+              <div className="text-center mt-4">
+                <h2 className="checkOut-h2">Your cart is empty</h2>
+                <p>Add items to continue shopping</p>
+              </div>
+            )}
 
             {cartProduct.map((product) => (
               <div
@@ -72,13 +71,14 @@ const Cart = () => {
                         className="cartPopUp-remove-edit-btn"
                         onClick={() => deleteAddToCartProduct(product.cartId)}
                       >
-                        <div className="d-flex justify-content-end">Remove</div>{" "}
+                        <div className="d-flex justify-content-end">
+                          Remove
+                        </div>{" "}
                       </button>
                     </div>
                   </div>
 
                   <div className="col-12 col-sm-5 col-lg-5 justify-content-sm-end d-flex mt-3 mt-sm-0">
-
                     <div className="d-flex">
                       <div className="product-quantity">Qty:</div>
                       <div>
@@ -147,9 +147,7 @@ const Cart = () => {
           </div>
           <div className="col-12 col-lg-6 mt-5 mt-lg-0">
             <div>
-
               <div>
-
                 <h2 className="checkOut-h2 mt-5 mt-md-0">Order Summary</h2>
 
                 <hr className="checkOut-hr" />
@@ -157,7 +155,7 @@ const Cart = () => {
                 <div className="row justify-content-between checkOut-Order-price">
                   <div className="col-5">Original Price</div>
                   <div className="col-2 justify-content-end d-flex">
-                   ${originalPrice.toFixed(2)}
+                    ${originalPrice.toFixed(2)}
                   </div>
                 </div>
 
@@ -175,7 +173,9 @@ const Cart = () => {
 
                 <div className="row justify-content-between checkOut-Order-est mt-2">
                   <div className="col-5">Estimated Sales Tax</div>
-                  <div className="col-2 justify-content-end d-flex">${tax.toFixed(2)}</div>
+                  <div className="col-2 justify-content-end d-flex">
+                    ${tax.toFixed(2)}
+                  </div>
                 </div>
 
                 <hr className="checkOut-hr" />
@@ -183,27 +183,29 @@ const Cart = () => {
                 <div className="row justify-content-between checkOut-order-total">
                   <div className="col-5">Total</div>
                   <div className="col-2 d-flex justify-content-end">
-                   ${total.toFixed(2)}
+                    ${total.toFixed(2)}
                   </div>
                 </div>
 
                 <div className="mt-4 mb-5">
-                  <button type="submit" className="w-100 checkOut-btn btn btn-success" onClick={checkOut}>
-                   Proceed to Check Out
+                  <button
+                    type="submit"
+                    className="w-100 checkOut-btn btn btn-success"
+                    onClick={checkOut}
+                  >
+                    Proceed to Check Out
                   </button>
                 </div>
-
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <PeopleAlsoBuy/>
-      <Footer/>
+      <PeopleAlsoBuy />
+      <Footer />
     </div>
   );
 };
 
 export default Cart;
-
