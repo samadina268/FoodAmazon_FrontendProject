@@ -1,16 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import FoodamazonLogo from "../assets/images/foodamazon-logo.png";
+import { useState } from "react";
 
 const Header = () => {
   const navigate = useNavigate();
+  const [isOpen, setisOpen] = useState(false)
 
   const handlenavlist = () => {
     navigate("/landing");
+    setisOpen(false)
   };
 
   const logOut = () => {
     localStorage.removeItem("token");
     navigate("/SignIn");
+    setisOpen(false)
   };
 
   return (
@@ -33,11 +37,12 @@ const Header = () => {
             aria-controls="navbarScroll"
             aria-expanded="false"
             aria-label="Toggle navigation"
+            onClick={() => setisOpen(!isOpen)}
           >
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          <div className="collapse navbar-collapse ms-4" id="navbarScroll">
+          <div className={`collapse navbar-collapse ms-4 ${isOpen ? "show" : ""}`} id="navbarScroll">
             <ul
               className="navbar-nav me-auto my-2 my-lg-0"
               style={{ "--bs-scroll-height": "100px" }}

@@ -12,14 +12,22 @@ const SignIn = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [errors, seterrors] = useState("");
+  const [loading, setloading] = useState(false)
 
   const schema = Joi.object({
     email: Joi.string()
       .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })
       .required(),
     password: Joi.string()
-      .pattern(new RegExp("^[a-zA-Z0-9]{3,30}$"))
-      .required(),
+          .min(8)
+          .pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])/)
+          .required()
+          .messages({
+            "string.empty": "Enter your password",
+            "string.min": "Password must be at least 8 characters",
+            "string.pattern.base":
+              "Password must include uppercase, lowercase, and a number",
+          }),
   });
 
   const handleClick = async (e) => {
@@ -39,6 +47,8 @@ const SignIn = () => {
       email: email,
       password: password,
     };
+
+    setloading(true)
 
     try {
       const response = await fetch(
@@ -66,6 +76,8 @@ const SignIn = () => {
     } catch (error) {
       console.log(error);
       seterrors("Unable to connect to server");
+    }finally{
+      setloading(false)
     }
   };
 
@@ -104,7 +116,7 @@ const SignIn = () => {
                 </button>
               </span>
 
-              <form action="#" method="get">
+              <form onSubmit={handleClick}>
                 <input
                   className="form-input mt-4"
                   type="email"
@@ -175,10 +187,11 @@ const SignIn = () => {
 
                 <button
                   type="submit"
-                  className="mt-4 mt-md-5 mb-5 mb-lg-0 submit-btn btn btn-success w-100"
-                  onClick={handleClick}
+                  className={`mt-4 mt-md-5 submit-btn btn btn-success w-100 mb-5 mb-lg-0 ${loading ? "loading" : ""}`}
                 >
-                  Sign In{" "}
+                  <span className="btn-text">Sign In</span>
+
+                  <i className="bx bx-loader-dots bx-spin loader-icon" />
                 </button>
               </form>
             </div>

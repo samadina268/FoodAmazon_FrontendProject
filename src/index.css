@@ -88,6 +88,22 @@ link {
   color: #00a859;
 }
 
+.loader-icon {
+  display: none;
+  color: white;
+  font-size: 34px;
+}
+
+button.loading .btn-text {
+  display: none;
+}
+
+button.loading .loader-icon {
+  text-align: center;
+  margin-top: 0.2rem;
+  display: inline-block;
+}
+
 @media (min-width: 768px) {
   .sign-right-part {
     max-width: 85%;
@@ -848,14 +864,19 @@ link {
 
 /* cart pop up and cart section */
 .cartPoPuP-main-box {
+  position: fixed;
   background-color: #00a85a9c;
   width: 100% !important;
-  top: 20%;
+  top: 0;
+  height: 100%;
   z-index: 999999;
 }
 
 .cartPopup-innerbox {
   width: 90%;
+  height: 85vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .cart-PopUp-item {

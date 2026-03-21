@@ -13,6 +13,7 @@ const Sign = () => {
   const [phone, setphone] = useState("");
   const [password, setpassword] = useState("");
   const [errors, seterrors] = useState("");
+  const [loading, setloading] = useState(false);
   const navigate = useNavigate();
 
   const schema = Joi.object({
@@ -22,11 +23,23 @@ const Sign = () => {
       tlds: { allow: ["com", "net"] },
     }),
     phone: Joi.string()
-      .pattern(/^[0-9]{11}$/)
-      .required(),
+      .pattern(/^\+?[0-9]{10,15}$/)
+      .required()
+      .messages({
+        "string.empty": "Enter your phone number",
+        "string.pattern.base": "Use a valid phone number with 10 to 15 digits",
+      }),
+
     password: Joi.string()
-      .pattern(new RegExp("^[a-zA-Z0-9]{3,30}$"))
-      .required(),
+      .min(8)
+      .pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])/)
+      .required()
+      .messages({
+        "string.empty": "Enter your password",
+        "string.min": "Password must be at least 8 characters",
+        "string.pattern.base":
+          "Password must include uppercase, lowercase, and a number",
+      }),
   });
 
   const handleSubmit = async (e) => {
@@ -43,12 +56,15 @@ const Sign = () => {
       seterrors(error.details[0].message);
       return;
     }
+
     const data = {
       fullname: name,
       email: email,
       phonenumber: phone,
       password: password,
     };
+
+    setloading(true);
     try {
       const response = await fetch(
         "https://food-amazon-backend-project.vercel.app/home/register",
@@ -60,7 +76,6 @@ const Sign = () => {
       );
 
       const result = await response.json();
-
       if (response.ok) {
         Swal.fire({
           title: "Success!",
@@ -82,6 +97,8 @@ const Sign = () => {
     } catch (error) {
       console.log(error);
       seterrors(["unable to connect to server"]);
+    } finally {
+      setloading(false);
     }
   };
 
@@ -120,7 +137,7 @@ const Sign = () => {
                 </button>
               </span>
 
-              <form action="#" method="get">
+              <form onSubmit={handleSubmit}>
                 <input
                   className="form-input mt-4"
                   type="text"
@@ -166,6 +183,7 @@ const Sign = () => {
                   />
 
                   <button
+                    type="button"
                     className="showpass-btn position-absolute"
                     onClick={() => {
                       setshowPassword(!showPassword);
@@ -203,12 +221,15 @@ const Sign = () => {
 
                 <button
                   type="submit"
-                  className="mt-4 mt-md-5 submit-btn btn btn-success w-100 mb-5 mb-lg-0"
-                  onClick={handleSubmit}
+                  className={`mt-4 mt-md-5 submit-btn btn btn-success w-100 mb-5 mb-lg-0 ${loading ? "loading" : ""}`}
                 >
-                  Sign Up
+                  <span className="btn-text">Sign Up</span>
+
+                  <i className="bx bx-loader-dots bx-spin loader-icon" />
                 </button>
               </form>
+
+              <div className="loading"></div>
             </div>
           </div>
         </div>
