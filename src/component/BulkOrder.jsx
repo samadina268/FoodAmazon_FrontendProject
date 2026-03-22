@@ -41,7 +41,10 @@ const BulkOrder = () => {
 
                 <button
                   className="w-100 mt-5 btn btn-outline-success card-btn d-flex align-items-center justify-content-center "
-                  onClick={() => navigate(`/ProductDetails/${order.id}`)}
+                  onClick={() => {
+                    (navigate(`/ProductDetails/${order.id}`),
+                      window.scrollTo(0, 0));
+                  }}
                 >
                   {order.btn}
                   <i
