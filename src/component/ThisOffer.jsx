@@ -46,13 +46,13 @@ const ThisOffer = () => {
       <div className="thisOffer-mainBox mx-auto mt-5 pt-5">
         <div>
           <div className="row justify-content-between">
-            <div className="col-12 col-sm-5">
+            <div className="col-12 col-sm-7">
               <p className="thisOffer-h1 pb-0 mt-3">
                 Hurry Do not Miss Out On This Offers!
               </p>
             </div>
-            <div className="col-12 col-sm-4 align-items-center d-flex justify-content-start  justify-content-sm-end">
-              <div className="">
+            <div className="col-12 col-sm-3 align-items-center d-flex justify-content-start  justify-content-sm-end">
+              <div className="mb-5 mb-sm-0">
                 <button className="btn btn-success">Browse All</button>
               </div>
             </div>
