@@ -195,13 +195,13 @@ const OurProduct = () => {
                   <div className="pe-2 ps-2 mb-5">
                     <button
                       className="mt-3 w-100 addToCart-btn btn btn-success"
-                      onClick={() => navigate("/Cart")}
+                      onClick={() => {navigate("/Cart"), window.scrollTo(0, 0)}}
                     >
                       Add to Cart
                     </button>
                     <button
                       className="w-100 mt-2 checkOut-btn btn btn-success "
-                      onClick={() => navigate("/Checkout")}
+                      onClick={() => {navigate("/Checkout"), window.scrollTo(0, 0)}}
                     >
                       Check Out
                     </button>

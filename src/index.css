@@ -622,6 +622,10 @@ button.loading .loader-icon {
   transform: translate(-50% 50%);
 }
 
+.newletter-error{
+  color: #ff0101;
+}
+
 @media (max-width: 768px) {
   .newsletter-h1 {
     font-size: 21px;
@@ -1025,4 +1029,24 @@ button.loading .loader-icon {
   font-weight: 400;
   color: #65685d;
   font-size: 16px;
+}
+
+.checkout-error{
+  color: #ff0101;
+}
+
+.checkout-loader-icon {
+  display: none;
+  color: white;
+  font-size: 34px;
+}
+
+button.loading .btn-text {
+  display: none;
+}
+
+button.loading .checkout-loader-icon {
+  text-align: center;
+  margin-top: 0.2rem;
+  display: inline-block;
 }

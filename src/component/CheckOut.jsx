@@ -3,9 +3,39 @@ import Swal from "sweetalert2";
 import VisacardLogo from "../assets/images/visa-payment-logo.png";
 import PaypalcardLogo from "../assets/images/paypal-payment-logo.png";
 import Footer from "./Footer";
-import AllProductContext from "../Allproductcontext/AllProductContext";
+import { useState } from "react";
 
 const CheckOut = () => {
+  const [email, setemail] = useState("");
+  const [deliverTo, setdeliverTo] = useState("");
+  const [country, setcountry] = useState("");
+  const [firstName, setfirstName] = useState("");
+  const [lastName, setlastName] = useState("");
+  const [address, setaddress] = useState("");
+  const [city, setcity] = useState("");
+  const [area, setarea] = useState("");
+  const [zipCode, setzipCode] = useState("");
+  const [phoneNumber, setphoneNumber] = useState("");
+  const [orderNote, setorderNote] = useState("");
+  const [error, seterror] = useState("");
+  const [loading, setloading] = useState(false);
+
+  const resetForm = () => {
+    {
+      setemail("");
+      setdeliverTo("");
+      setcountry("");
+      setfirstName("");
+      setlastName("");
+      setaddress("");
+      setcity("");
+      setarea("");
+      setzipCode("");
+      setphoneNumber("");
+      setorderNote("");
+    }
+  };
+
   const submitCard = () => {
     const cardNumber = document.getElementById("card-number").value;
     const expDate = document.getElementById("exp-date").value;
@@ -37,19 +67,57 @@ const CheckOut = () => {
     document.getElementById("card-last-name").value = "";
   };
 
-  const placeOrder = (e) => {
+  const placeOrder = async (e) => {
     e.preventDefault();
 
-    const form = e.target;
+    const data = {
+      email: email,
+      deliverTo: deliverTo,
+      country: country,
+      firstName: firstName,
+      lastName: lastName,
+      address: address,
+      city: city,
+      area: area,
+      zipCode: zipCode,
+      phoneNumber: phoneNumber,
+      orderNote: orderNote,
+    };
 
-    if (!form.checkValidity()) {
-      form.reportValidity();
-    } else {
-      Swal.fire({
-        icon: "success",
-        title: "Order placed",
-        text: "Your checkout was successful",
-      }).then(() => form.reset());
+    setloading(true);
+
+    try {
+      const response = await fetch(
+        "https://food-amazon-backend-project.vercel.app/checkout/billinginfo",
+        {
+          method: "post",
+          headers: { "content-Type": "application/json" },
+          body: JSON.stringify(data),
+        },
+      );
+      const result = await response.json();
+
+      if (response.ok) {
+        Swal.fire({
+          icon: "success",
+          title: "Order placed",
+          text: "Your checkout was successful",
+        });
+        resetForm();
+      } else {
+        const errormessage =
+          typeof result === "string"
+            ? result
+            : result.message
+              ? result.message
+              : "signup failed";
+        seterror(errormessage);
+      }
+    } catch (error) {
+      console.log(error);
+      seterror(["unable to connect to server"]);
+    } finally {
+      setloading(false);
     }
   };
 
@@ -72,6 +140,8 @@ const CheckOut = () => {
                     required
                     autoComplete="on"
                     placeholder="Your email addrress"
+                    value={email}
+                    onChange={(e) => setemail(e.target.value)}
                   />
 
                   <label
@@ -83,6 +153,8 @@ const CheckOut = () => {
                   <select
                     id="residence"
                     className="w-100 d-block checkout-selectOpt mt-2 rounded-2 "
+                    value={deliverTo}
+                    onChange={(e) => setdeliverTo(e.target.value)}
                   >
                     <option>Residence</option>
                     <option>Owned</option>
@@ -102,6 +174,8 @@ const CheckOut = () => {
                   <select
                     id="country"
                     className="w-100 d-block checkout-selectOpt mt-2 rounded-2 "
+                    value={country}
+                    onChange={(e) => setcountry(e.target.value)}
                   >
                     <option>Nigeria</option>
                     <option>Ghana</option>
@@ -117,11 +191,13 @@ const CheckOut = () => {
                       <input
                         className="w-100 checkout-input rounded-2"
                         type="text"
-                        id="name"
-                        name="name"
+                        id="firstName"
+                        name="firstName"
                         required
                         autoComplete="on"
                         placeholder="Your first name"
+                        value={firstName}
+                        onChange={(e) => setfirstName(e.target.value)}
                       />
                     </div>
                     <div className="col-6">
@@ -133,6 +209,8 @@ const CheckOut = () => {
                         required
                         autoComplete="on"
                         placeholder="Your last name"
+                        value={lastName}
+                        onChange={(e) => setlastName(e.target.value)}
                       />
                     </div>
                   </div>
@@ -145,6 +223,8 @@ const CheckOut = () => {
                     required
                     autoComplete="on"
                     placeholder="Your address"
+                    value={address}
+                    onChange={(e) => setaddress(e.target.value)}
                   />
 
                   <div className="row mt-3">
@@ -157,6 +237,8 @@ const CheckOut = () => {
                         required
                         autoComplete="on"
                         placeholder="city"
+                        value={city}
+                        onChange={(e) => setcity(e.target.value)}
                       />
                     </div>
 
@@ -164,6 +246,8 @@ const CheckOut = () => {
                       <select
                         id="country"
                         className="w-100  d-block checkout-selectOpt rounded-2 h-100"
+                        value={area}
+                        onChange={(e) => setarea(e.target.value)}
                       >
                         <option>Ikeja</option>
                         <option>Ojudu</option>
@@ -184,6 +268,8 @@ const CheckOut = () => {
                         required
                         autoComplete="on"
                         placeholder="Zip code"
+                        value={zipCode}
+                        onChange={(e) => setzipCode(e.target.value)}
                       />
                     </div>
                   </div>
@@ -196,6 +282,8 @@ const CheckOut = () => {
                     required
                     autoComplete="on"
                     placeholder="Phone Number"
+                    value={phoneNumber}
+                    onChange={(e) => setphoneNumber(e.target.value)}
                   />
 
                   <div>
@@ -207,9 +295,11 @@ const CheckOut = () => {
                     </label>
                     <textarea
                       className="w-100 checkOut-textarea mt-2 "
-                      name="order"
-                      id="order"
+                      name="orderNote"
+                      id="orderNote"
                       placeholder="Tell us what do you think"
+                      value={orderNote}
+                      onChange={(e) => setorderNote(e.target.value)}
                     ></textarea>
                   </div>
                 </div>
@@ -407,12 +497,17 @@ const CheckOut = () => {
                   </div>
                 </div>
 
+                <div className="mt-3">
+                  <p className="text-center checkout-error">{error}</p>
+                </div>
+
                 <div className="mt-4 mb-5">
                   <button
                     type="submit"
-                    className="w-100 checkOut-btn btn btn-success"
+                    className={`w-100 checkOut-btn btn btn-success ${loading ? "loading" : ""}`}
                   >
-                    place Order
+                    <span className="btn-text">place Order</span>
+                    <i className="bx bx-loader-dots bx-spin checkout-loader-icon" />
                   </button>
                 </div>
               </div>

@@ -122,12 +122,12 @@ const ProductDetails = () => {
                 <div>
                   <button
                     className="mt-3 w-100 addToCart-btn btn btn-success"
-                    onClick={() => navigate(`/Cart/${products.id}`)}
+                    onClick={() => {navigate(`/Cart/${products.id}`), window.scrollTo(0, 0)}}
                   >
                     Add to Cart
                   </button>
                   <button
-                    onClick={() => navigate("/Checkout")}
+                    onClick={() => {navigate("/Checkout"), window.scrollTo(0, 0)}}
                     className="w-100 mt-2 checkOut-btn btn btn-success"
                   >
                     Check Out
